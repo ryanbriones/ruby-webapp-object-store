@@ -1,0 +1,29 @@
+<script type="text/javascript">
+  function submitForm(fooId) {
+    var form = document.getElementById('foo_' + fooId + '_delete_form');
+    if(form) {
+      form.submit();
+    }
+  }
+</script>
+
+<ul>
+  <% @foos.each do |foo| %>
+    <li>
+      <a href="/foos/<%= foo.object_id %>"><%= foo.name %></a>
+      <form action="/foos/<%= foo.object_id %>" method="post" id="foo_<%= foo.object_id %>_delete_form">
+        <input type="hidden" name="_method" value="delete" />
+      </form> 
+      (<a href="/foos/<%= foo.object_id %>/edit">Edit</a>)
+      (<a href="javascript: void(submitForm(<%= foo.object_id %>))" id="foo_<%= foo.object_id %>_delete_link">Delete</a>)
+    </li>
+  <% end %>
+</ul>
+
+<div>
+  <h2>New Foo</h2>
+  <form action="/foos" method="post">
+    Name: <input type="text" name="foo[name]" />
+    <input type="submit" name="commit" value="Save" />
+  </form>
+</div>

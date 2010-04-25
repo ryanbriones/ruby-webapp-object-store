@@ -1,0 +1,8 @@
+<div>
+  <h2>Edit Foo</h2>
+  <form action="/foos/<%= @foo.object_id %>" method="post">
+    <input type="hidden" name="_method" value="put" />
+    Name: <input type="text" name="foo[name]" value="<%= @foo.name %>" />
+    <input type="submit" name="commit" value="Save" />
+  </form>
+</div>
